@@ -1,108 +1,135 @@
 \documentclass{beamer}
-\usetheme{CambridgeUS}
+%\usetheme{CambridgeUS}
+\usetheme{Warsaw}
 
 \usepackage[utf8]{inputenc}
 \usepackage{pgfpages}
 \usepackage{outlines}
+\usepackage{xcolor} 
 
+\usepackage{hyperref}
+\makeatletter
+
+%\Hy@AtBeginDocument{%
+%  \def\@pdfborder{0 0 1}% Overrides border definition set with colorlinks=true
+%  \def\@pdfborderstyle{/S/U/W 1}% Overrides border style set with colorlinks=true
+%                                % Hyperlink border style will be underline of width 1pt
+%}
+\makeatother
+\hypersetup{
+%    colorlinks=true,
+%    linkcolor=cyan,
+%    linkbordercolor=cyan,
+%    urlcolor=cyan,
+%    urlbordercolor=cyan
+}
+
+\usepackage{soul}
+\usepackage{color}
+
+\makeatletter
+\let\HL\hl
+\renewcommand\hl{%
+  \let\set@color\beamerorig@set@color
+  \let\reset@color\beamerorig@reset@color
+  \HL}
+\makeatother
+
+\usepackage{enumitem}
+\setitemize{label=\usebeamerfont*{itemize item}%
+  \usebeamercolor[fg]{itemize item}
+  \usebeamertemplate{itemize item}}
+\setenumerate[1]{%
+  label=\protect\usebeamerfont{enumerate item}%
+        \protect\usebeamercolor[fg]{enumerate item}%
+        \insertenumlabel.}
+  
 %\setbeameroption{show notes on second screen}
 %\setbeameroption{hide notes}
 %\setbeameroption{show only notes}
 
+\setbeamertemplate{headline}{}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{section in toc}[ball]
+\setbeamertemplate{subsection in toc}[ball numbered]
+\setbeamertemplate{itemize items}[square]
+\setbeamertemplate{enumerate items}[square]
+
 \title{Generating pentest reports with Reconmap}
 \subtitle{CyberScotland Week}
-\author{Santiago Lizardo}
+\author[]{Santiago Lizardo}
 \date{February 26, 2021}
 
 \begin{document}
 
 \begin{frame}
-    \note[item]{...}
-    
-    \titlepage
-\end{frame}
-
-\begin{frame}
-    \frametitle{Outline}
-
-    \tableofcontents
-\end{frame}
-
-\section{Basic pentesting concepts}
-
-\begin{frame}
-    \frametitle{Penetration testing}
-
-    \note[item]{
-    Penetration testing (also called pen testing or ethical hacking) is a systematic process of probing for vulnerabilities in your networks and applications. It is essentially a controlled form of hacking in which the 'attackers' act on your behalf to find and test weaknesses that criminals could exploit.    
-    }
-
-	\begin{itemize}
-		\item Systematic process
-		\item Seeks for vulnerabilities
-		\item Controlled and authorised
-		\item Prevents malicious attacks
-	\end{itemize}	    
-\end{frame}
-
-\begin{frame}
-    \frametitle{Pentester}
-
-    \note[item]{
-    }
-\end{frame}
-
-\begin{frame}
-    \frametitle{Becoming a pentester}
-
-    \note[item]{
-    }
-\end{frame}
-
-\begin{frame}
-    \frametitle{Pentesting workflow}
-
-    \note[item]{
-    }
-\end{frame}
-
-\begin{frame}
-    \frametitle{Penetration testing standards}
-
     \note[item]{
     }
     
-	\begin{itemize}
-		\item OSSTMM
-		\item OWASP
-		\item NIST
-		\item PTES
-		\item ISSAF		
-	\end{itemize}	    
+	\includegraphics[width=\textwidth]{cyberscotland-week-reconmap.jpg}
+	\maketitle
 \end{frame}
 
-\section{Reconmap}
 
 \begin{frame}
-    \frametitle{Reconmap intro}
-
+    \frametitle{Before the talk}
+    
     \note[item]{
     }
-\end{frame}
 
-\begin{frame}
-    \frametitle{Features}
-
-    \note[item]{
-    }
+    \begin{itemize}
+    		\item Time for Q\&A
+    		\item Slides
+    		\item Survey
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Workflow}
+	\frametitle{Agenda}
+	
+		\note[item]{
+	}
+	
+	\tableofcontents[hideothersubsections]
+\end{frame}
 
+\begin{frame}
+    \frametitle{About the presenter}
+    
     \note[item]{
     }
+
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+	    \begin{itemize}
+	    		\item Software engineer and entrepreneur
+	    		\item Based in Scotland
+	    		\item Security advocate
+	    		\item Reconmap's founder
+	    \end{itemize}
+		\end{column}
+
+		\begin{column}{0.5\textwidth}
+		\includegraphics[width=0.6\textwidth]{santiago-lizardo-presenter.png}
+		\end{column}
+	\end{columns}
 \end{frame}
+
+\begin{frame}
+    \frametitle{Imposter syndrome}
+    
+    	\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{imposter-syndrome.jpg}
+	\caption{https://flic.kr/p/dQC9kt}
+	\end{figure}
+\end{frame}
+
+\include{section1-basic-pentesting-concepts}
+
+\include{section2-reconmap-introduction}
+
+\include{section3-reconmap-interactive-demo}
 
 \begin{frame}
     \frametitle{Recap}
@@ -111,6 +138,27 @@
     }
 
     \tableofcontents
+\end{frame}
+
+\begin{frame}
+    \frametitle{More information}
+
+    \note[item]{
+    }
+
+	\begin{description}[style=nextline]
+	   \item[Documentation] \url{https://reconmap.org}
+	   \item[SaaS] \url{https://reconmap.com}
+	   \item[Code] \url{https://github.com/reconmap}
+	   \item[Twitter] \url{https://twitter.com/reconmap}	   
+	\end{description}
+\end{frame}
+
+\section{Q\&A}
+\begin{frame}<presentation:1>[noframenumbering]
+	\begin{Huge}
+	Questions?
+	\end{Huge}
 \end{frame}
 
 \end{document}
